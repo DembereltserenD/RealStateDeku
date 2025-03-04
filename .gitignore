@@ -36,3 +36,8 @@ Desktop.ini
 
 # Supabase
 supabase/.temp/
+
+
+
+NEXT_PUBLIC_SUPABASE_URL=https://otfikfaeorpypaayhqzz.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90ZmlrZmFlb3JweXBhYXlocXp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA4MTYxNjIsImV4cCI6MjA1NjM5MjE2Mn0.CuONAAGsrZRPK7YHi9hVOcVnv_6MtWCXJJkPy8oBY6o
