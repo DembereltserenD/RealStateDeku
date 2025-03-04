@@ -1,0 +1,65 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Property Details" class="bg-blue-500 text-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+        <ActionItem ios.position="right" android.position="actionBar" tap="onToggleFavorite">
+            <Label text="{{ isFavorite ? '&#xf004;' : '&#xf08a;' }}" class="fas text-lg" />
+        </ActionItem>
+        <ActionItem ios.position="right" android.position="actionBar" tap="onShareTap">
+            <Label text="&#xf1e0;" class="fas text-lg" />
+        </ActionItem>
+    </ActionBar>
+
+    <ScrollView>
+        <GridLayout rows="auto, auto, auto, auto, auto, auto">
+            <!-- Image Gallery -->
+            <GridLayout row="0" height="250">
+                <Carousel items="{{ property.images }}" indicatorColor="#66FFFFFF" indicatorColorUnselected="#33FFFFFF">
+                    <Carousel.itemTemplate>
+                        <Image src="{{ $value }}" stretch="aspectFill" />
+                    </Carousel.itemTemplate>
+                </Carousel>
+            </GridLayout>
+            
+            <!-- Basic Info -->
+            <StackLayout row="1" class="p-4 bg-white">
+                <Label text="{{ property.title }}" class="text-2xl font-bold text-gray-800" textWrap="true" />
+                <Label text="{{ property.location }}" class="text-gray-600" textWrap="true" />
+                <Label text="${{ property.price }}" class="text-xl text-blue-500 font-bold mt-2" />
+            </StackLayout>
+            
+            <!-- Features -->
+            <GridLayout row="2" columns="*, *, *" class="p-4 bg-white border-t border-b border-gray-200">
+                <StackLayout col="0" class="text-center">
+                    <Label text="{{ property.bedrooms }}" class="text-lg font-bold text-gray-800" />
+                    <Label text="Bedrooms" class="text-gray-600" />
+                </StackLayout>
+                <StackLayout col="1" class="text-center">
+                    <Label text="{{ property.bathrooms }}" class="text-lg font-bold text-gray-800" />
+                    <Label text="Bathrooms" class="text-gray-600" />
+                </StackLayout>
+                <StackLayout col="2" class="text-center">
+                    <Label text="{{ property.area }} sqft" class="text-lg font-bold text-gray-800" />
+                    <Label text="Area" class="text-gray-600" />
+                </StackLayout>
+            </GridLayout>
+            
+            <!-- Description -->
+            <StackLayout row="3" class="p-4 bg-white">
+                <Label text="Description" class="text-lg font-bold text-gray-800 mb-2" />
+                <Label text="{{ property.description }}" class="text-gray-600" textWrap="true" />
+            </StackLayout>
+            
+            <!-- Map -->
+            <GridLayout row="4" height="200" class="m-4 bg-white rounded-lg">
+                <ContentView id="propertyMapView" />
+                <ActivityIndicator busy="{{ isMapLoading }}" class="activity-indicator" />
+            </GridLayout>
+            
+            <!-- Contact -->
+            <StackLayout row="5" class="p-4 m-4 bg-white rounded-lg">
+                <Button text="Contact Agent" tap="onContactTap" class="bg-blue-500 text-white rounded-lg p-4" />
+                <Button text="Schedule Viewing" tap="onScheduleTap" class="mt-2 bg-white text-blue-500 border border-blue-500 rounded-lg p-4" />
+            </StackLayout>
+        </GridLayout>
+    </ScrollView>
+</Page>

@@ -1,0 +1,61 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Filters" class="bg-blue-500 text-white">
+        <NavigationButton text="Cancel" android.systemIcon="ic_menu_close_clear_cancel" tap="onCancelTap" />
+        <ActionItem ios.position="right" android.position="actionBar" text="Reset" tap="onResetTap" />
+        <ActionItem ios.position="right" android.position="actionBar" text="Apply" tap="onApplyTap" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Price Range -->
+            <Label text="Price Range" class="text-lg font-bold text-gray-800 mb-2" />
+            <GridLayout rows="auto, auto" columns="*, *" class="mb-4">
+                <TextField row="0" col="0" hint="Min Price" text="{{ minPrice }}" keyboardType="number" class="p-2 bg-white rounded-lg border border-gray-300 mr-1" />
+                <TextField row="0" col="1" hint="Max Price" text="{{ maxPrice }}" keyboardType="number" class="p-2 bg-white rounded-lg border border-gray-300 ml-1" />
+                <Slider row="1" col="0" colSpan="2" minValue="0" maxValue="2000000" value="{{ sliderMinPrice }}" class="mt-2" />
+                <Slider row="1" col="0" colSpan="2" minValue="0" maxValue="2000000" value="{{ sliderMaxPrice }}" class="mt-2" />
+            </GridLayout>
+            
+            <!-- Bedrooms -->
+            <Label text="Bedrooms" class="text-lg font-bold text-gray-800 mb-2" />
+            <GridLayout columns="*, *, *, *, *" class="mb-4">
+                <Button col="0" text="Any" tap="onBedroomSelect" data="null" class="{{ selectedBedrooms === null ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+                <Button col="1" text="1+" tap="onBedroomSelect" data="1" class="{{ selectedBedrooms === 1 ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+                <Button col="2" text="2+" tap="onBedroomSelect" data="2" class="{{ selectedBedrooms === 2 ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+                <Button col="3" text="3+" tap="onBedroomSelect" data="3" class="{{ selectedBedrooms === 3 ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+                <Button col="4" text="4+" tap="onBedroomSelect" data="4" class="{{ selectedBedrooms === 4 ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+            </GridLayout>
+            
+            <!-- Bathrooms -->
+            <Label text="Bathrooms" class="text-lg font-bold text-gray-800 mb-2" />
+            <GridLayout columns="*, *, *, *" class="mb-4">
+                <Button col="0" text="Any" tap="onBathroomSelect" data="null" class="{{ selectedBathrooms === null ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+                <Button col="1" text="1+" tap="onBathroomSelect" data="1" class="{{ selectedBathrooms === 1 ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+                <Button col="2" text="2+" tap="onBathroomSelect" data="2" class="{{ selectedBathrooms === 2 ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+                <Button col="3" text="3+" tap="onBathroomSelect" data="3" class="{{ selectedBathrooms === 3 ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+            </GridLayout>
+            
+            <!-- Property Type -->
+            <Label text="Property Type" class="text-lg font-bold text-gray-800 mb-2" />
+            <GridLayout columns="*, *" rows="auto, auto" class="mb-4">
+                <Button row="0" col="0" text="House" tap="onPropertyTypeSelect" data="house" class="{{ selectedPropertyType === 'house' ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+                <Button row="0" col="1" text="Apartment" tap="onPropertyTypeSelect" data="apartment" class="{{ selectedPropertyType === 'apartment' ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+                <Button row="1" col="0" text="Condo" tap="onPropertyTypeSelect" data="condo" class="{{ selectedPropertyType === 'condo' ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+                <Button row="1" col="1" text="Any" tap="onPropertyTypeSelect" data="null" class="{{ selectedPropertyType === null ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 border border-blue-500' }} rounded-lg m-1" />
+            </GridLayout>
+            
+            <!-- More Filters -->
+            <Label text="More Filters" class="text-lg font-bold text-gray-800 mb-2" />
+            <GridLayout rows="auto, auto, auto" columns="*, 60" class="mb-4">
+                <Label row="0" col="0" text="Has Parking" class="text-gray-600" />
+                <Switch row="0" col="1" checked="{{ hasParking }}" />
+                
+                <Label row="1" col="0" text="Has Pool" class="text-gray-600" />
+                <Switch row="1" col="1" checked="{{ hasPool }}" />
+                
+                <Label row="2" col="0" text="Pets Allowed" class="text-gray-600" />
+                <Switch row="2" col="1" checked="{{ petsAllowed }}" />
+            </GridLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

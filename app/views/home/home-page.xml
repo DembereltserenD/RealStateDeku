@@ -1,0 +1,89 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Deku Real Estate" class="bg-blue-500 text-white">
+        <ActionItem ios.position="right" android.position="actionBar" tap="onSearchTap">
+            <Label text="&#xf002;" class="fas text-lg" />
+        </ActionItem>
+    </ActionBar>
+
+    <TabView selectedIndex="{{ selectedTabIndex }}" selectedIndexChanged="onTabChange" class="bg-gray-100">
+        <TabViewItem title="Properties" iconSource="res://icon_home">
+            <GridLayout rows="auto, *">
+                <GridLayout row="0" columns="*, auto" class="p-4 bg-white">
+                    <SearchBar col="0" hint="Search properties..." text="{{ searchQuery }}" submit="onSearch" clear="onClear" class="bg-gray-100 rounded-lg" />
+                    <Button col="1" text="Filters" tap="onFiltersTap" class="ml-2 bg-blue-500 text-white rounded-lg" />
+                </GridLayout>
+                
+                <ListView row="1" items="{{ properties }}" itemTap="onPropertyTap" class="bg-gray-100">
+                    <ListView.itemTemplate>
+                        <GridLayout rows="auto" columns="100, *" class="p-4 m-2 bg-white rounded-lg shadow">
+                            <Image row="0" col="0" src="{{ images[0] || 'res://placeholder_house' }}" class="w-24 h-24 rounded" />
+                            <StackLayout row="0" col="1" class="ml-2">
+                                <Label text="{{ title }}" class="text-lg font-bold text-gray-800" textWrap="true" />
+                                <Label text="{{ location }}" class="text-gray-600" textWrap="true" />
+                                <Label text="${{ price }}" class="text-blue-500 font-bold" />
+                                <GridLayout columns="auto, auto, auto, *" class="mt-1">
+                                    <Label col="0" text="{{ bedrooms }}" class="text-gray-600" />
+                                    <Label col="1" text="bed" class="text-gray-600 ml-1" />
+                                    <Label col="2" text="{{ bathrooms }}" class="text-gray-600 ml-4" />
+                                    <Label col="3" text="bath" class="text-gray-600 ml-1" />
+                                </GridLayout>
+                            </StackLayout>
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </GridLayout>
+        </TabViewItem>
+        
+        <TabViewItem title="Map" iconSource="res://icon_map">
+            <GridLayout>
+                <ContentView id="mapView" />
+                <ActivityIndicator busy="{{ isMapLoading }}" class="activity-indicator" />
+            </GridLayout>
+        </TabViewItem>
+        
+        <TabViewItem title="Favorites" iconSource="res://icon_heart">
+            <GridLayout>
+                <ListView items="{{ favorites }}" itemTap="onFavoriteTap">
+                    <ListView.itemTemplate>
+                        <GridLayout rows="auto" columns="100, *" class="p-4 m-2 bg-white rounded-lg shadow">
+                            <Image row="0" col="0" src="{{ images[0] || 'res://placeholder_house' }}" class="w-24 h-24 rounded" />
+                            <StackLayout row="0" col="1" class="ml-2">
+                                <Label text="{{ title }}" class="text-lg font-bold text-gray-800" textWrap="true" />
+                                <Label text="{{ location }}" class="text-gray-600" textWrap="true" />
+                                <Label text="${{ price }}" class="text-blue-500 font-bold" />
+                            </StackLayout>
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+                <StackLayout verticalAlignment="center" horizontalAlignment="center" visibility="{{ favorites.length ? 'collapsed' : 'visible' }}">
+                    <Label text="No favorites yet" class="text-gray-500 text-lg" />
+                    <Label text="Properties you like will appear here" class="text-gray-400" />
+                </StackLayout>
+            </GridLayout>
+        </TabViewItem>
+        
+        <TabViewItem title="Profile" iconSource="res://icon_user">
+            <ScrollView>
+                <StackLayout class="p-4">
+                    <StackLayout visibility="{{ isLoggedIn ? 'visible' : 'collapsed' }}">
+                        <Label text="My Profile" class="text-2xl font-bold text-center mb-4" />
+                        <Image src="{{ userAvatar || 'res://default_avatar' }}" class="h-24 w-24 rounded-full self-center mb-4" />
+                        <Label text="{{ userEmail }}" class="text-center text-gray-600 mb-4" />
+                        
+                        <Button text="My Saved Searches" tap="onSavedSearchesTap" class="bg-white text-blue-500 border border-blue-500 rounded-lg p-4 mb-2" />
+                        <Button text="Settings" tap="onSettingsTap" class="bg-white text-blue-500 border border-blue-500 rounded-lg p-4 mb-2" />
+                        <Button text="Sign Out" tap="onSignOutTap" class="bg-red-500 text-white rounded-lg p-4 mt-4" />
+                    </StackLayout>
+                    
+                    <StackLayout visibility="{{ isLoggedIn ? 'collapsed' : 'visible' }}">
+                        <Label text="Sign In" class="text-2xl font-bold text-center mb-4" />
+                        <TextField hint="Email" text="{{ email }}" keyboardType="email" autocorrect="false" autocapitalizationType="none" class="p-4 bg-white rounded-lg mb-2" />
+                        <TextField hint="Password" text="{{ password }}" secure="true" class="p-4 bg-white rounded-lg mb-4" />
+                        <Button text="Sign In" tap="onSignInTap" class="bg-blue-500 text-white rounded-lg p-4 mb-2" />
+                        <Button text="Sign Up" tap="onSignUpTap" class="bg-white text-blue-500 border border-blue-500 rounded-lg p-4" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </TabViewItem>
+    </TabView>
+</Page>

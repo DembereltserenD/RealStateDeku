@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "ES2020",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmitHelpers": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "lib": ["ESNext", "dom", "ES2020"],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["app/*"],
+      "@/*": ["app/*"]
+    },
+    "typeRoots": ["./node_modules/@types", "./app/types"]
+  },
+  "include": ["app/**/*"],
+  "files": ["./references.d.ts"],
+  "exclude": ["node_modules", "platforms"]
+}

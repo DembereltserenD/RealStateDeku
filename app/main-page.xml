@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page 
+    xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:components="components"
+    navigatingTo="onNavigatingTo" 
+    class="page">
+    
+    <ActionBar title="Deku Real Estate" class="action-bar" />
+    
+    <GridLayout rows="auto, *">
+        <!-- Search Bar -->
+        <SearchBar row="0" hint="Search properties..." class="search-bar" text="{{ searchQuery }}" submit="{{ onSearch }}" clear="{{ onClear }}" />
+        
+        <!-- Property List -->
+        <components:PropertyList row="1" />
+    </GridLayout>
+</Page>

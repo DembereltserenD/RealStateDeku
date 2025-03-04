@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://schemas.nativescript.org/tns.xsd"
+    items="{{ Properties }}" 
+    height="100%" 
+    separatorColor="transparent"
+    rowHeight="400">
+    <ListView.itemTemplate>
+        <GridLayout>
+            <ns:PropertyCard xmlns:ns="components" />
+        </GridLayout>
+    </ListView.itemTemplate>
+</ListView>

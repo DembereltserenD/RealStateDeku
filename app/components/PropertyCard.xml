@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns="http://schemas.nativescript.org/tns.xsd" rows="auto" columns="*" class="property-card">
+    <StackLayout>
+        <Image src="{{ images[0] || 'res://placeholder' }}" class="property-image" stretch="aspectFill" loadMode="async" />
+        <StackLayout class="property-info">
+            <Label text="{{ title }}" class="h2" textWrap="true" />
+            <Label text="{{ '$' + price }}" class="property-price" />
+            <Label text="{{ location }}" class="property-address" textWrap="true" />
+            <GridLayout columns="auto,*,auto" class="property-details">
+                <Label col="0" text="{{ (bedrooms || 0) + ' beds' }}" />
+                <Label col="1" text="{{ (bathrooms || 0) + ' baths' }}" />
+                <Label col="2" text="{{ (area || 0) + ' sq ft' }}" />
+            </GridLayout>
+            <Label text="{{ property_type }}" class="property-type" />
+        </StackLayout>
+    </StackLayout>
+</GridLayout>
